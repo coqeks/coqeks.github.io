@@ -1,0 +1,754 @@
+/* ==========================================================================
+   1. IMPORTS & EXTERNAL RESOURCES
+   ========================================================================== */
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+/* ==========================================================================
+   2. CUSTOM PROPERTIES & THEMES
+   ========================================================================== */
+:root {
+  /* Dark Theme (Default) */
+  --bg: #0a0f1e;
+  --bg2: #0f1629;
+  --ink: #e8ebf2;
+  --dim: #b6bdcd;
+  --line: #2a3350;
+  --accent: #e2ebff;
+
+  /* Layout Constants */
+  --lw: 100vw;
+  --hh: calc(clamp(280px, 40vw, 620px) * 0.4839);
+  --ph: calc(clamp(240px, 27vw, 430px) * 0.2656);
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Light Theme Override (Explicit & System Preferences) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3eee2;
+    --bg2: #ebe5d6;
+    --ink: #141b33;
+    --dim: #5c6480;
+    --line: #c9c2ae;
+    --accent: #2f4fa8;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg: #f3eee2;
+  --bg2: #ebe5d6;
+  --ink: #141b33;
+  --dim: #1c1f29;
+  --line: #c9c2ae;
+  --accent: #04060d;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0f1e;
+  --bg2: #0f1629;
+  --ink: #e8ebf2;
+  --dim: #b9c0d1;
+  --line: #2a3350;
+  --accent: #e2ebff;
+}
+
+/* ==========================================================================
+   3. BASE & GLOBAL RESETS
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ==========================================================================
+   4. LAYOUT & PAGES
+   ========================================================================== */
+
+/* --- Home / Main Shell --- */
+.home {
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Arimo", system-ui, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  transition: background 0.5s, color 0.5s;
+}
+
+.home::-webkit-scrollbar {
+  display: none;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  height: 100vh;
+  position: relative;
+}
+
+.left {
+  position: relative;
+}
+
+.right {
+  position: relative;
+}
+
+.rig {
+  position: absolute;
+  left: 4%;
+  width: 76%;
+  top: 0;
+  bottom: 0;
+}
+
+/* --- Projects Page --- */
+.projects {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 100vh;
+}
+
+.projects h2.sr {
+  font-size: 1px;
+}
+
+.projects .name {
+  top: calc(20vh + var(--hh) - var(--ph));
+}
+
+.pright {
+  padding: 8vh 130px 4vh 20px;
+}
+
+/* ==========================================================================
+   5. NAVIGATION & BRANDING
+   ========================================================================== */
+.name {
+  position: absolute;
+  left: clamp(150px, 22vw, 300px);
+  top: 20vh;
+}
+
+.name svg {
+  display: block;
+  width: clamp(280px, 40vw, 620px);
+  height: auto;
+  overflow: visible;
+}
+
+.name svg.small {
+  width: clamp(240px, 27vw, 430px);
+}
+
+.role {
+  margin-top: 26px;
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+
+.menu {
+  position: fixed;
+  left: clamp(150px, 22vw, 300px);
+  top: calc(20vh + var(--hh) + 96px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu a {
+  width: max-content;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  color: var(--dim);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: font-size 0.45s cubic-bezier(0.3, 1, 0.4, 1), color 0.3s, border-color 0.3s;
+}
+
+.menu a:hover {
+  color: var(--ink);
+}
+
+.menu a.on {
+  font-size: 17px;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.social {
+  position: fixed;
+  left: 48px;
+  bottom: 48px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.social a {
+  color: var(--dim);
+  transition: color 0.3s;
+}
+
+.social a:hover {
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   6. INTERACTIVE COMPONENTS
+   ========================================================================== */
+
+/* --- Interactive Canvas & Handles --- */
+#wave {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--lw);
+  height: 100vh;
+  pointer-events: none;
+  z-index: 7;
+}
+
+#strings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.handle {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 72px;
+  z-index: 3;
+  cursor: grab;
+  touch-action: none;
+}
+
+.handle:active {
+  cursor: grabbing;
+}
+
+.hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 44px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dim);
+  transition: opacity 1s;
+}
+
+/* --- Guitar Pickup Stack & Panel --- */
+.stack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.pickup {
+  position: relative;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--bg2);
+  box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4px var(--line);
+}
+
+.pickup i {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  border: 1px solid var(--dim);
+  background: radial-gradient(circle at 35% 35%, var(--ink), var(--dim) 60%, transparent 65%);
+  opacity: 0.85;
+}
+
+.panel {
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  padding: 44px 38px;
+  margin: 0 22px;
+}
+
+.panel h2 {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.panel p {
+  font-size: 18px;
+  line-height: 2;
+  color: var(--dim);
+  letter-spacing: 0.03em;
+}
+
+.panel p + p {
+  margin-top: 16px;
+}
+
+.panel a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  pointer-events: auto;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  margin: 16px 0 26px;
+}
+
+.rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--dim);
+  opacity: 0.6;
+}
+
+/* --- Global Side Controls (Switches & Knobs) --- */
+.ctl {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  color: var(--dim);
+  z-index: 6;
+}
+
+.ctl svg {
+  display: block;
+}
+
+.sw {
+  position: relative;
+  width: 34px;
+  height: 70px;
+  padding: 0;
+  border: 1px solid var(--dim);
+  border-radius: 17px;
+  background: var(--bg2);
+  cursor: pointer;
+}
+
+.sw::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--line);
+}
+
+.sw b {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--ink);
+  transition: top 0.3s cubic-bezier(0.5, 1.6, 0.5, 1);
+}
+
+:root[data-theme="light"] .sw b {
+  top: 39px;
+}
+
+.knob {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid var(--dim);
+  background: radial-gradient(circle at 35% 30%, var(--bg2), var(--bg));
+  box-shadow: 0 0 0 5px var(--bg), 0 0 0 6px var(--line);
+  cursor: ns-resize;
+  touch-action: none;
+}
+
+.knob::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  width: 2px;
+  height: 16px;
+  margin-left: -1px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform-origin: 50% 22px;
+  transform: rotate(var(--r, 0deg));
+}
+
+/* --- Guitar Effects Pedals --- */
+.board {
+  position: relative;
+  width: 100%;
+}
+
+.cables {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cables path {
+  fill: none;
+  stroke: var(--dim);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.cables circle {
+  fill: var(--bg);
+  stroke: var(--dim);
+  stroke-width: 1.5;
+}
+
+.pedal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  height: 380px;
+  padding: 16px 14px;
+  border: 1px solid var(--dim);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.pedal:hover {
+  border-color: var(--ink);
+}
+
+.pedal.drag {
+  z-index: 5;
+  border-color: var(--ink);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+  cursor: grabbing;
+}
+
+.jack {
+  position: absolute;
+  top: calc(50% - 10px);
+  width: 7px;
+  height: 20px;
+  border: 1px solid var(--dim);
+  background: var(--bg);
+}
+
+.jack.l {
+  left: -5px;
+  border-radius: 3px 0 0 3px;
+}
+
+.jack.r {
+  right: -5px;
+  border-radius: 0 3px 3px 0;
+}
+
+.knobs {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.k {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.k i {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--dim);
+  transform: rotate(var(--a));
+  transition: transform 0.5s cubic-bezier(0.4, 1.5, 0.5, 1);
+}
+
+.k i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 1.5px;
+  height: 7px;
+  margin-left: -0.75px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+.engaged .k i {
+  transform: rotate(calc(var(--a) + 55deg));
+}
+
+.plate {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: left;
+}
+
+.plate b {
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+}
+
+.plate p {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--dim);
+}
+
+.plate small {
+  margin-top: auto;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+}
+
+.led {
+  width: 8px;
+  height: 8px;
+  margin-top: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--dim);
+  transition: 0.25s;
+}
+
+.engaged .led {
+  background: #ff5a4d;
+  border-color: #ff5a4d;
+  box-shadow: 0 0 10px 2px rgba(255, 90, 77, 0.6);
+}
+
+.foot {
+  width: 44px;
+  height: 44px;
+  margin-top: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--dim);
+  background: transparent;
+  box-shadow: inset 0 0 0 5px var(--bg), inset 0 0 0 6px var(--dim);
+  cursor: pointer;
+  transition: transform 0.12s, background 0.2s;
+}
+
+.engaged .foot {
+  transform: scale(0.93);
+  background: var(--line);
+}
+
+.foot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   7. ANIMATIONS & TRANSITIONS
+   ========================================================================== */
+.ch {
+  font-family: "Arimo", system-ui, sans-serif;
+  font-weight: 200;
+  font-size: 150px;
+  letter-spacing: 4px;
+  fill: var(--ink);
+  fill-opacity: 0;
+  stroke: var(--ink);
+  stroke-width: 1.3;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: draw 1.5s cubic-bezier(0.55, 0.1, 0.3, 1) both,
+             fillin 0.8s ease both;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillin {
+  to {
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+
+/* Progressive Page Transition State */
+[data-tp] {
+  translate: calc(var(--tp, 0) * var(--k, 1) * 90px) 0;
+  opacity: calc(1 - var(--tp, 0) * 1.1);
+}
+
+.name[data-tp] {
+  --k: 1.3;
+}
+
+.settle [data-tp] {
+  transition: translate 0.42s cubic-bezier(0.3, 0.7, 0.3, 1),
+              opacity 0.42s ease;
+}
+
+/* Reduced Motion Safety */
+@media (prefers-reduced-motion: reduce) {
+  .ch {
+    animation: none;
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+    stroke: none;
+  }
+}
+
+/* ==========================================================================
+   8. MEDIA QUERIES (MOBILE RESPONSIVENESS)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .home {
+    --lw: 100vw;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 38% 62%;
+  }
+
+  .name {
+    left: 110px;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .rig {
+    width: 70%;
+  }
+
+  .panel {
+    padding: 22px;
+  }
+
+  .panel p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .ctl {
+    right: 10px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+  .projects .left {
+    height: 38vh;
+  }
+
+  .pright {
+    padding: 0 24px 8vh;
+  }
+
+  .name,
+  .projects .name {
+    top: 7vh;
+  }
+
+  .menu {
+    top: calc(7vh + 205px);
+    left: 110px;
+    width: calc(100vw - 130px);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+}
