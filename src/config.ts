@@ -32,15 +32,15 @@ export const PROJECTS: Project[] = [
   },
   {
     title: 'IoT Home Sensor',
-    description: '',
-    techStack: 'Python · ML',
-    knobLabels: ['Drive', 'Mix', 'Vol'],
+    description: 'Information displaying system that gathers various sensor information to the main circuit and displays through a remote website,',
+    techStack: '2026 May ~ Sept',
+    knobLabels: ['C++', 'ESP32', 'I2C'],
   },
   {
-    title: 'Project Three',
-    description: 'A short description of what it does, why you built it, and what problem it solves.',
-    techStack: 'C++ · Embedded',
-    knobLabels: ['Time', 'Fdbk', 'Level'],
+    title: 'Mobile Controlled Drone',
+    description: 'TBA',
+    techStack: '2026 Sept ~ Present',
+    knobLabels: ['C++', 'Embedded', ''],
   }
 ]
 
