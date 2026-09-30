@@ -1,9 +1,60 @@
-const NUM_STRINGS = 6
+import { forwardRef, useState } from 'react'
+import { NUM_STRINGS } from '../config'
+import HandwrittenText from '../components/Handwrittentext'
+import Strings from '../components/Strings'
 
-// Audio chord voicings (Hz)
-const CHORD_VOICINGS = [
-  [87.31, 130.81, 174.61, 261.63, 329.63, 392.00],  // Fmaj9  (F2, C3, F3, C4, E4, G4)
-  [82.41, 123.47, 164.81, 207.65, 311.13, 392.00],  // E7#9   (E2, B2, E3, G#3, D#4, G4)
-  [130.81, 196.00, 261.63, 329.63, 466.16, 523.25], // C7     (C3, G3, C4, E4, Bb4, C5)
-  [110.00, 164.81, 220.00, 261.63, 329.63, 440.00], // Am7    (A2, E3, A3, C4, E4, A4)
-]
+interface Props {
+  animKey: number
+  onPluck: (stringIndex: number, velocity: number) => void
+}
+
+const Poles = () => (
+  <>
+    {Array.from({ length: NUM_STRINGS }, (_, i) => (
+      <i key={i} style={{ left: `${((i + 0.5) / NUM_STRINGS) * 100}%` }} />
+    ))}
+  </>
+)
+
+const Hero = forwardRef<HTMLElement, Props>(function Hero({ animKey, onPluck }, ref) {
+  const [showHint, setShowHint] = useState(true)
+  return (
+    <section className="hero" ref={ref}>
+      <div className="left">
+        <div className="name" data-tp>
+          <h1 className="sr">Jason Lee</h1>
+          <HandwrittenText key={animKey} viewBox="-4 -120 620 300" lines={[['Jason', 0], ['Lee', 155]]} />
+          <div className="role">Aspiring Computer Engineer</div>
+        </div>
+      </div>
+
+      <div className="right">
+        <div className="rig" data-tp>
+          <Strings
+            onPluck={(i, v) => {
+              setShowHint(false)
+              onPluck(i, v)
+            }}
+          />
+          <div className="stack">
+            <div className="pickup"><Poles /></div>
+            <div className="panel">
+              <h2>About Me</h2>
+              <div className="rule" />
+              <p>
+                Hello, I'm Jason. I am currently studying Computer Engineering at the{' '}
+                <a href="https://uwaterloo.ca">University of Waterloo</a>. I am interested in building end-to-end products that make real
+                difference, as well as applications of AI/ML on various fields.
+              </p>
+              <p>Besides my technology side, I love to play electric guitar, go rock climbing, watching films and travelling.</p>
+            </div>
+            <div className="pickup"><Poles /></div>
+          </div>
+          <div className="hint" style={{ opacity: showHint ? 1 : 0 }}>Strum the strings</div>
+        </div>
+      </div>
+    </section>
+  )
+})
+
+export default Hero

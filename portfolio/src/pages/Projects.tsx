@@ -1,26 +1,28 @@
-const PROJECTS = [
-    {
-      title: 'Trackify',
-      description: 'A web application designed for musicians, featuring automatic source separation. Useful for making backing tracks.',
-      techStack: 'React · Node',
-      knobLabels: ['Level', 'Tone', 'Gain'],
-    },
-    {
-      title: 'Project Two',
-      description: 'A short description of what it does, why you built it, and what problem it solves.',
-      techStack: 'Python · ML',
-      knobLabels: ['Drive', 'Mix', 'Vol'],
-    },
-    {
-      title: 'Project Three',
-      description: 'A short description of what it does, why you built it, and what problem it solves.',
-      techStack: 'C++ · Embedded',
-      knobLabels: ['Time', 'Fdbk', 'Level'],
-    },
-    {
-      title: 'Project Four',
-      description: 'A short description of what it does, why you built it, and what problem it solves.',
-      techStack: 'TypeScript',
-      knobLabels: ['Rate', 'Depth', 'Level'],
-    },
-  ]
+import { forwardRef } from 'react'
+import HandwrittenText from '../components/HandwrittenText'
+import PedalBoard from '../components/PedalBoard'
+
+const Projects = forwardRef<HTMLElement, { animKey: number }>(function Projects({ animKey }, ref) {
+  return (
+    <section className="projects" ref={ref}>
+      <div className="left">
+        <div className="name" data-tp>
+          
+          <svg className="small" viewBox="-4 -115 640 170">
+            <text x="0" y={0}>
+              <tspan className="cn">Projects</tspan>
+            </text>
+          </svg>
+          
+          {/* <HandwrittenText key={animKey} className="small" viewBox="-4 -115 640 170" lines={[['Project', 0]]} /> */}
+          <div className="role">Things I've built</div>
+        </div>
+      </div>
+      <div className="pright">
+        <PedalBoard />
+      </div>
+    </section>
+  )
+})
+
+export default Projects
