@@ -1,8 +1,7 @@
 import { forwardRef } from 'react'
-import HandwrittenText from '../components/HandwrittenText'
 
 // Reuses the .projects layout (grid, title position, mobile rules) from App.css
-const Experience = forwardRef<HTMLElement, { animKey: number }>(function Experience({ animKey }, ref) {
+const Experience = forwardRef<HTMLElement>(function Experience({}, ref) {
   return (
     <section className="projects experience" ref={ref}>
       <div className="left">

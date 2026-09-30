@@ -1,8 +1,7 @@
 import { forwardRef } from 'react'
-import HandwrittenText from '../components/HandwrittenText'
-import PedalBoard from '../components/PedalBoard'
+import PedalBoard  from '../components/Pedalboard.tsx'
 
-const Projects = forwardRef<HTMLElement, { animKey: number }>(function Projects({ animKey }, ref) {
+const Projects = forwardRef<HTMLElement>(function Projects({}, ref) {
   return (
     <section className="projects" ref={ref}>
       <div className="left">

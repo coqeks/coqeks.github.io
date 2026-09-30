@@ -40,8 +40,8 @@ export default function App() {
       <Controls volume={volume} onVolumeChange={setVolume} onToggleTheme={toggleTheme} />
 
       <Hero ref={heroRef} animKey={animKeys[0]} onPluck={handlePluck} />
-      <Projects ref={projectsRef} animKey={animKeys[1]} />
-      <Experience ref={experienceRef} animKey={animKeys[2]} />
+      <Projects ref={projectsRef} />
+      <Experience ref={experienceRef} />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { useRef, type RefObject } from 'react'
 import { RIPPLE_DURATION_MS } from '../config'
 import { type WaveBus } from '../types'
-import { easeInCubic, easeOutCubic } from '../utils/math'
 import { useAnimationFrame, useCanvasSurface, useThemeColors } from './useCanvas'
 
 const waveCenterX = (w: number) => Math.min(w * (w > 900 ? 0.087 : 0.17), 190) + 10
