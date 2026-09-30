@@ -442,7 +442,7 @@ body {
 /* --- Guitar Effects Pedals --- */
 .board {
   position: relative;
-  width: 100%;
+  width: 45vw;
 }
 
 .cables {
@@ -748,7 +748,7 @@ body {
   }
 
   .pright {
-    padding: 0 24px 8vh;
+    padding: 0 12px 8vh;
   }
 
   .name,

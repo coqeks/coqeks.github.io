@@ -29,8 +29,8 @@ export default function Pedal({ project, index, position, isDragging, pointerHan
       </div>
       <div className="plate">
         <b>{project.title}</b>
-        <p>{project.description}</p>
         <small>{project.techStack}</small>
+        <p>{project.description}</p>
       </div>
       <div className="led" />
       <button className="foot" aria-pressed={engaged} aria-label={`Engage ${project.title}`} onClick={() => setEngaged((v) => !v)} />

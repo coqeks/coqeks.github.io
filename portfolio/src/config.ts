@@ -26,13 +26,13 @@ export const NAVIGATION_ITEMS = ['Home', 'Projects', 'Experience', 'Resume', 'Co
 export const PROJECTS: Project[] = [
   {
     title: 'Trackify',
-    description: 'A web application designed for musicians, featuring automatic source separation. Useful for making backing tracks.',
-    techStack: 'React · Node',
-    knobLabels: ['Level', 'Tone', 'Gain'],
+    description: 'A web application designed for musicians, featuring automatic source separation with asynchronous pipeline, file-transfer offloading via S3, and JWT-based authentication. Useful for making backing tracks.',
+    techStack: '2026 Feb ~ Sept',
+    knobLabels: ['React', 'FastAPI', 'Postgres'],
   },
   {
-    title: 'Project Two',
-    description: 'A short description of what it does, why you built it, and what problem it solves.',
+    title: 'IoT Home Sensor',
+    description: '',
     techStack: 'Python · ML',
     knobLabels: ['Drive', 'Mix', 'Vol'],
   },
@@ -41,13 +41,7 @@ export const PROJECTS: Project[] = [
     description: 'A short description of what it does, why you built it, and what problem it solves.',
     techStack: 'C++ · Embedded',
     knobLabels: ['Time', 'Fdbk', 'Level'],
-  },
-  {
-    title: 'Project Four',
-    description: 'A short description of what it does, why you built it, and what problem it solves.',
-    techStack: 'TypeScript',
-    knobLabels: ['Rate', 'Depth', 'Level'],
-  },
+  }
 ]
 
 // ---- Pedal board ----
