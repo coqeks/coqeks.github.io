@@ -1,6 +1,6 @@
 import { useRef, type ComponentProps, type RefObject } from 'react'
 import { useWaveCanvas } from '../hooks/useWaveCanvas.ts'
-import type { WaveBus } from '../types'
+import type { WaveBus } from '../types.ts'
 
 interface Props {
   scrollerRef: RefObject<HTMLDivElement | null>
